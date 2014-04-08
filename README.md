@@ -39,7 +39,7 @@ Install
     (myenv)me@localhost:~/myenv/graphite-boards$ pip install -r requirements.txt
     (myenv)me@localhost:~/myenv/graphite-boards$ cp app/setting.py.example app/settings.py
 
-Edit settings.py, and as a minimum, set the full path to your intended sqllite db file (i.e. the path to the "db" folder in the checkout)
+Edit settings.py, and as a minimum, set the full path to your intended sqllite db file (i.e. the path to the "db" and name of sqllite file)
 
 
     (myenv)me@localhost:~/myenv/graphite-boards$ ./runserver.py 
