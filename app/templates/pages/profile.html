@@ -1,0 +1,23 @@
+{% extends "pages/layout.html" %}
+    {% block content %}
+    <div class="container">
+       <div class="col-md-6">
+        <div class="page-header">
+            <h2>Edit Profile: {{current_user.username}}</h2>
+        </div>
+            <form action="/update/profile" method="POST">
+                <input type="hidden" name="id" value="{{current_user.id}}">
+                Password: <input type="password" class="form-control" name="password"><br>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        <br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <font color=red><i>{{ message }}</i></font>
+            {% endfor %}
+         {% endif %}
+        {% endwith %}
+        </div>
+    </div>
+{% endblock %}

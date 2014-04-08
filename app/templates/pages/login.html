@@ -1,0 +1,20 @@
+{% extends "pages/layout.html" %}
+{% block content %}
+    <div class="container">
+      <form action="/login" method="POST" class="form-signin">
+        <h2 class="form-signin-heading"><center>Login</center></h2>
+        <input type="text" name="username" class="form-control" placeholder="{% if config.LDAP_ENABLED %}LDAP {% endif %}Username" autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <font color=red><i>{{ message }}</i></font>
+            {% endfor %}
+         {% endif %}
+        {% endwith %}
+      </form>
+    </div>
+
+{% endblock %}

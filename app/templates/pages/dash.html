@@ -1,0 +1,46 @@
+{% extends "pages/layout.html" %}
+{% block content %}
+    <div class="container">
+       <div class="col-md-12">
+       <div class="page-header">
+        <h2>All Dashboards</h2>
+       </div>
+       {% if auth_enabled == False and not current_user.is_authenticated() %}
+       <i><font color="red"><b>TESTING MODE ON</b>
+       <br>Change AUTH_ENABLED value in settings.py and restart to enable authentication via LDAP.</i></font>
+       <br>
+       <br>
+        {% endif %}
+
+
+       {% if dashboards %}
+       <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Owner</th>
+            <th></th>
+          </tr>
+        </thead>
+        {% for dashboard in dashboards %}
+        <tr>
+            <td>{{dashboard.name}}</td>
+            <td>{{dashboard.owner}}</td>
+            <td style="text-align: right">
+            <div class="btn-group">
+              {% if current_user.username == dashboard.owner or current_user.role == 1 %}
+                <a href="/edit/dashboard/{{dashboard.id}}" class="btn btn-warning" role="button"><i class="glyphicon glyphicon-pencil"></i>  Edit</a>
+              {% endif %}
+                <a href="/dashboard/{{dashboard.id}}" class="btn btn-success" role="button"><i class="glyphicon glyphicon-eye-open"></i>  View</a>
+            </div>
+
+            </td>
+        </tr>
+        {% endfor %}      
+        </table>
+       {% else %}
+       <i>No dashboards in database</i>
+       {% endif %}
+       </div>
+     </div>
+{% endblock %}

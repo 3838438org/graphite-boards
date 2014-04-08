@@ -1,0 +1,82 @@
+{% extends "pages/layout.html" %}
+    {% block content %}
+    <div class="container">
+       <div class="col-md-6">
+        <div class="page-header">
+            <h2>Edit {{dashboard.name}}</h2>
+        </div>
+        {% if dashboard.graphes.all() %}
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th></th>
+                </tr>
+            {% for graph in dashboard.graphes.all() %}
+                <tr>
+                    </th>
+                    <td>
+                        <a href="{{graph.url}}" target="_blank">{{graph.name}}</a>
+                    </td>
+                    <td style="text-align: right;">
+                        <div class="btn-group">
+                            <a href="#graph_id{{graph.id}}" class="btn btn-warning" role="button" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i>  Edit</a>                      
+                            <a href="/delete/graph/{{dashboard.id}}/{{graph.id}}" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-trash"></i>  Delete</a>
+                        </div>
+                    </td>
+                        <!-- Modal -->
+                        <div class="modal fade" id="graph_id{{graph.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Edit Graph</h4>
+                              </div>
+                              <div class="modal-body">
+                                <form action="/edit/graph" method="POST">
+                                    <input type="hidden" name="dashboard_id" value="{{dashboard.id}}">
+                                    <input type="hidden" name="graph_id" value="{{graph.id}}">
+                                    Graph Name: <input type="text" class="form-control" name="graph_name" value="{{graph.name}}"><br>
+                                    Graph URL:  <textarea class="form-control" rows="6" name="graph_url">{{graph.url}}</textarea><br>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                 </tr>
+            {% endfor %}
+            </table>
+
+        {% else %}
+        <i>No configured graphite urls for this dashboard</i>
+        {% endif %}
+    </div>
+   <div class="col-md-6">
+    <div class="page-header">
+        <h2>Add Graphite URLs</h2>
+    </div>
+        <form role="form" action="/add/url" method="POST">
+            <label for="name">Friendly name e.g. Latency:</label>
+            <input type="text" class="form-control" name="name" required=True>
+            <label for="name">Graphite URL:</label>            
+            <input type="text" class="form-control" name="url" required=True placeholder="graphite url here">
+            <input type="hidden" name="dashboard" value="{{dashboard.id}}">
+            <p></p>
+
+            <button type="submit" class="btn-group btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add Graph</button>
+            </form>
+    <table>
+        <tr>
+            <td><a href="/dashboard/{{dashboard.id}}" target="_blank" class="btn-group btn btn-success" role="button"><i class="glyphicon glyphicon-eye-open"></i>  View Dashboard</a></td>
+            <td><a href="/delete/dashboard/{{dashboard.id}}" class="btn-group btn btn-danger" role="button"><i class="glyphicon glyphicon-trash"></i>  Delete Dashboard</a></td>
+        </tr>
+    </table>
+
+
+</div>
+{% endblock %}

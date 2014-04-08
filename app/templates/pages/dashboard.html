@@ -1,0 +1,81 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/jquery.gridster.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src='/static/js/main.js'></script>
+</head>
+<body>
+    <div class='gridster' id='graph-container'>
+        <ul>
+        {% for graph in dashboard.graphes.all() %}
+            {% if dashboard.layout is not none %}
+                {% if dashboard.layout[graph.id] %}
+                    <li class='graphdiv' data-id="{{graph.id}}" data-row={{dashboard.layout[graph.id]['row']}} data-col={{dashboard.layout[graph.id]['col']}} data-sizex={{dashboard.layout[graph.id]['size_x']}} data-sizey={{dashboard.layout[graph.id]['size_y']}} data-imgsrc="{{graph.url}}" data-friendlyname="{{graph.name}}">
+                {% else %}
+                    <li class='graphdiv' data-id="{{graph.id}}" data-row=1 data-col=1 data-sizex=2 data-sizey=1 data-imgsrc="{{graph.url}}" data-friendlyname="{{graph.name}}">
+                {% endif %}
+            {% else %}
+                <script>console.log('no data for {{graph.id}}')</script>
+                <li class='graphdiv' data-id="{{graph.id}}" data-imgsrc="{{graph.url}}" data-row=1 data-col=1 data-sizex=2 data-sizey=1 data-friendlyname="{{graph.name}}">
+            {% endif %}
+            <!-- {{graph.name}} -->
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
+
+    <script src="/static/js/jquery.gridster.with-extras.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+      var gridster;
+
+      $(function(){
+
+        gridster = $(".gridster ul").gridster({
+          widget_base_dimensions: [$(window).width()/4, 300],
+          widget_margins: [0, 0],
+          helper: 'clone',
+          max_cols: 4,
+          max_rows: 4,
+          extra_rows: 0,
+          extra_cols: 0,
+          resize: {
+            enabled: true,
+            max_size: [4, 3],
+            min_size: [1, 1],
+            stop: function(e, ui, $widget) {
+                $($widget).hide({duration: 'slow', done: function() {
+                    calcGraphDimensions($widget[0]);
+                    sendUpdate();
+                    $(this).show({duration: 'fast'});                    
+                }})
+                // calcGraphDimensions($widget);
+                // sendUpdate();
+            }
+          },
+          draggable: {
+            stop: function(e, ui, $widget) {
+                sendUpdate();
+            }
+          },
+          serialize_params: function($w, wgd) {
+            return { id: $w.data('id'), col: wgd.col, row: wgd.row, size_x: wgd.size_x, size_y: wgd.size_y }
+          }
+          
+        }).data('gridster');
+
+        calcAllGraphDimensions()
+        reloadGraphs()
+
+        // getPositionInfo();
+
+      });
+    </script>
+
+</body>
+
+</html>

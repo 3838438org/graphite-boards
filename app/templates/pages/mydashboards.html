@@ -1,0 +1,43 @@
+{% extends "pages/layout.html" %}
+{% block content %}
+<div class="container">
+       <div class="col-md-6">
+       <div class="page-header">
+        <h2>My Dashboards</h2>
+       </div>
+       {% if dashboards %}
+       <table class="table table-striped">
+        {% for dashboard in dashboards %}
+        <tr>
+            <td>{{dashboard.name}}</td>
+            <td style="text-align: right">
+            <div class="btn-group">
+                <a href="/edit/dashboard/{{dashboard.id}}" class="btn btn-warning" role="button"><i class="glyphicon glyphicon-pencil"></i>  Edit</a>
+                <a href="/dashboard/{{dashboard.id}}" class="btn btn-success" role="button"><i class="glyphicon glyphicon-eye-open"></i>  View</a>                      
+            </div>
+
+            </td>
+        </tr>
+        {% endfor %}      
+        </table>
+       {% else %}
+       <i>{{current_user.username}} has no dashboards</i>
+       {% endif %}
+       </div>
+       <div class="col-md-6">
+       <div class="page-header">
+        <h2>Create Dashboard</h2>
+       </div>
+       <table class="table">
+        <tr>
+            <form role="form" action="/create/dashboard" method="POST">
+                <td>
+                  <input type="text" class="form-control" placeholder="dashboard name" name="dashboard" required=True>
+                  <input type="hidden" name="username" value="{{current_user.username}}">
+                </td>
+                <td><button type="submit" class="form-control btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create</button></td>
+            </form>
+        </tr>
+       </table>
+       </div>
+{% endblock %}
