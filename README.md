@@ -10,7 +10,7 @@ A webapp written using Flask, Sqlite, LDAP and Twitter bootstrap to generate fle
 Why?
 ----
 
-At Mind Candy we send millions of datapoints into Graphite from our varying systems and applications. The NetOps team have been using these to display simple web pages on large TV screens in the office for some time. 
+At Mind Candy we send millions of datapoints into [Graphite](http://graphite.readthedocs.org/en/latest/overview.html) from our varying systems and applications. The NetOps team have been using these to display simple web pages on large TV screens in the office for some time. 
 
 However, the boards were just hand-crafted HTML and others, technical and non-technical, wanted to display metrics in their part of the office too. We could've used the dashboard creator in Graphite but it was a little too clunky for what we required, so we created Graphite Boards as a quick solution.
 
