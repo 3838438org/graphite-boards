@@ -35,7 +35,7 @@ Install
     me@localhost:~$ virtualenv myenv
     me@localhost:~$ cd myenv/
     me@localhost:~/myenv$ source bin/activate
-    (myenv)me@localhost:~/myenv$ git clone git@gitlab.tool.mindcandy.com:netops/graphite-boards.git
+    (myenv)me@localhost:~/myenv$ git clone git@github.com:mindcandy/graphite-boards.git
     (myenv)me@localhost:~/myenv/graphite-boards$ pip install -r requirements.txt
     (myenv)me@localhost:~/myenv/graphite-boards$ cp app/setting.py.example app/settings.py
 
@@ -63,27 +63,27 @@ My Dashboards
   * List all dashboards you own.
   * Create new dashboards
 
-![My_Dashboards](http://gitlab.tool.mindcandy.com/netops/graphite-boards/raw/master/screenshots/2.png)
+![My_Dashboards](http://raw.githubusercontent.com/mindcandy/graphite-boards/raw/master/screenshots/2.png)
 
 
 Edit dashboards
 ---------------
   * Here you can add new Graphite URL or edit existing ones.
 
-![Edit_View](http://gitlab.tool.mindcandy.com/netops/graphite-boards/raw/master/screenshots/3.png)
+![Edit_View](http://raw.githubusercontent.com/mindcandy/graphite-boards/raw/master/screenshots/3.png)
 
 
 View All Dashboards
 -------------------
   * All dashboards can be viewed without authentication. Transparency rules.
 
-![No_Auth](http://gitlab.tool.mindcandy.com/netops/graphite-boards/raw/master/screenshots/1.png)
+![No_Auth](http://raw.githubusercontent.com/mindcandy/graphite-boards/raw/master/screenshots/1.png)
 
 
 A Dashboard
 -----------
   * Here we have a dashboard with 7 graphs. Each graph is resizable and draggable and layout are saved via callback to the sqlite backend.
 
-![Dashboard](http://gitlab.tool.mindcandy.com/netops/graphite-boards/raw/master/screenshots/4.png)
+![Dashboard](http://raw.githubusercontent.com/mindcandy/graphite-boards/raw/master/screenshots/4.png)
 
 
