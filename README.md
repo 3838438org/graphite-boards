@@ -63,27 +63,27 @@ My Dashboards
   * List all dashboards you own.
   * Create new dashboards
 
-![My_Dashboards](http://raw.githubusercontent.com/mindcandy/graphite-boards/master/screenshots/2.png)
+![My_Dashboards](screenshots/2.png?raw=true)
 
 
 Edit dashboards
 ---------------
   * Here you can add new Graphite URL or edit existing ones.
 
-![Edit_View](http://raw.githubusercontent.com/mindcandy/graphite-boards/master/screenshots/3.png)
+![Edit_View](screenshots/3.png?raw=true)
 
 
 View All Dashboards
 -------------------
   * All dashboards can be viewed without authentication. Transparency rules.
 
-![No_Auth](http://raw.githubusercontent.com/mindcandy/graphite-boards/master/screenshots/1.png)
+![No_Auth](screenshots/1.png?raw=true)
 
 
 A Dashboard
 -----------
   * Here we have a dashboard with 7 graphs. Each graph is resizable and draggable and layout are saved via callback to the sqlite backend.
 
-![Dashboard](http://raw.githubusercontent.com/mindcandy/graphite-boards/master/screenshots/4.png)
+![Dashboard](screenshots/4.png?raw=true)
 
 
